@@ -9,6 +9,7 @@ pipeline {
                     // Load existing YAML file
                     def yamlFile = readYaml file: 'config.yaml'
 
+
                     // Update the port value to 1433
                     yamlFile.application.database.cors_allowed_origins = 1433
 
@@ -17,7 +18,11 @@ pipeline {
 
                     // Optional: Print the updated YAML to the console
                     echo "Updated YAML content:"
-                    echo sh(script: 'cat config1.yaml', returnStdout: true)
+                    sh """
+                    mv config1.yaml config.yaml
+                    cat config.yaml
+                    """
+                    // echo sh(script: 'cat config1.yaml', returnStdout: true)
                 }
             }
         }
