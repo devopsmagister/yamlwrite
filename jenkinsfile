@@ -5,6 +5,7 @@ pipeline {
         stage('Update YAML') {
             steps {
                 script {
+                    sh "ls -l"
                     // Load existing YAML file
                     def yamlFile = readYaml file: 'config.yaml'
 
@@ -22,3 +23,4 @@ pipeline {
         }
     }
 }
+
