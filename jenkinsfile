@@ -25,6 +25,7 @@ pipeline {
                     mv config1.yaml config.yaml
                     cat config.yaml
                     """
+                    archiveArtifacts artifacts: 'config.yaml'
                     // echo sh(script: 'cat config1.yaml', returnStdout: true)
                 }
             }
