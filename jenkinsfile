@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    env {
+        port_number = 1433
+    }
 
     stages {
         stage('Update YAML') {
@@ -11,7 +14,7 @@ pipeline {
 
 
                     // Update the port value to 1433
-                    yamlFile.application.database.cors_allowed_origins = 1433
+                    yamlFile.application.database.cors_allowed_origins = env.port_number
 
                     // Write the updated YAML back to the file
                     writeYaml file: 'config1.yaml', data: yamlFile
