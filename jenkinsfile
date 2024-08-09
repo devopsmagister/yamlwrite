@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Update YAML') {
+            steps {
+                script {
+                    // Load existing YAML file
+                    def yamlFile = readYaml file: 'config.yaml'
+
+                    // Update the port value to 1433
+                    yamlFile.application.database.cors_allowed_origins = 1433
+
+                    // Write the updated YAML back to the file
+                    writeYaml file: 'config.yaml', data: yamlFile
+
+                    // Optional: Print the updated YAML to the console
+                    echo "Updated YAML content:"
+                    echo sh(script: 'cat config.yaml', returnStdout: true)
+                }
+            }
+        }
+    }
+}

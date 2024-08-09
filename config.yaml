@@ -1,0 +1,25 @@
+version: 1.0
+application:
+  name: SampleApp
+  environment: production
+  port: 8080
+  debug: false
+  database:
+    type: postgresql
+    host: localhost
+    port: 5432
+    name: sample_db
+    username: admin
+    password: secretpassword
+    cors_allowed_origins: any
+
+    logging:
+      level: INFO
+      file: /var/log/sampleapp/app.log
+      max_size: 100MB
+      max_files: 5
+      cors_allowed_origins: any
+
+    security:
+      csrf_protection: true
+      cors_allowed_origins: any
